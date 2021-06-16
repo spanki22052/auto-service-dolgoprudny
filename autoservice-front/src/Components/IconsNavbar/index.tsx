@@ -11,30 +11,51 @@ const Navbar = styled.div`
   display: flex;
   align-items: center;
 
-  .left-side,
-  .right-side {
-    align-items: center;
-    display: flex;
-    margin: 10px 15px 10px 15px;
+  svg {
+    margin-bottom: 5px;
   }
 
-  @media screen and (max-width: 600px) {
-    padding: 5px 10px 5px 10px;
+  .left-side,
+  .right-side {
+    display: flex;
+    margin: 5px 15px 5px 15px;
+    .time {
+      display: none;
+    }
+  }
+
+  .left-side {
+    align-items: flex-end;
+  }
+
+  .right-side {
+    align-items: center;
+  }
+
+  @media screen and (max-width: 750px) {
     height: 40px;
+
+    .right-side {
+      p {
+        display: none;
+        margin-bottom: 2px;
+      }
+    }
   }
 `;
 
 const PWhite = styled.p`
   color: white;
-  font-size: 1.1em;
+  font-size: 0.8em;
   font-family: Montserrat, sans-serif;
   font-weight: 300;
   margin-left: 5px;
-  margin-top: 5px;
+  display: ${(props) => props.theme.display === 'show' && 'block !important'};
+  margin-bottom: 0;
 `;
 
 const WhiteLine = styled.div`
-  height: 35px;
+  height: 25px;
   display: block;
   margin-right: 10px;
   margin-left: 10px;
@@ -48,8 +69,6 @@ const IconsNavbar = () => {
         <Instagram21px />
         <WhiteLine />
         <Instagram21px />
-        <WhiteLine />
-        <Instagram21px />
       </div>
       <div className="right-side">
         <WhiteLine />
@@ -60,7 +79,7 @@ const IconsNavbar = () => {
         <PWhite> mashini@gmail.com</PWhite>
         <WhiteLine />
         <Time28px />
-        <PWhite> 8:00 - 20:00</PWhite>
+        <PWhite theme={{ display: 'show' }}> 8:00 - 20:00</PWhite>
       </div>
     </Navbar>
   );
