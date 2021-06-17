@@ -6,6 +6,7 @@ import ourServices from '../img/our-services.png';
 import smallOurServices from '../img/small-our-services.png';
 import galleryImg from '../img/gallery.png';
 import yandexMapImage from '../img/yandex-map-place.png';
+import mapBlockImage from '../img/image-map-block.png';
 
 import { Car, Money, StopWatch } from '../Icons';
 
@@ -185,7 +186,12 @@ const MainPage = () => {
       </ServicesBlock>
 
       <MapBlock>
-        <img src={yandexMapImage} alt="yandex-map-image" />
+        <div className="left-block">
+          <h1>Мы на карте </h1>
+          <p>Лихачевский пр-д, 12, Долгопрудный, Московская обл., 141707</p>
+          <img src={mapBlockImage} alt="map-block" />
+        </div>
+        <img className="yandex-map" src={yandexMapImage} alt="yandex-map" />
       </MapBlock>
     </MainBlock>
   );

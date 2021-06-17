@@ -240,19 +240,65 @@ export const MapBlock = styled.div`
 
   display: flex;
   padding: 50px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
-  img {
-    max-width: 500px;
+  .left-block {
+    margin-top: 20px;
+    width: 45%;
+    margin-right: 5%;
+    h1 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      text-transform: uppercase;
+
+      color: #ffffff;
+    }
+
+    p {
+      font-family: Scada;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+
+      color: #ffffff;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+
+      border: 1px solid white;
+    }
+  }
+
+  .yandex-map {
+    width: 50%;
     height: 300px;
+    margin-top: 90px !important;
     object-fit: cover;
+    margin-top: 20px;
 
     border: 1px solid white;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     padding: 20px;
-    img {
-      height: 200px;
+    width: 90%;
+
+    justify-content: center;
+    .left-block {
+      width: 100%;
+      margin: 0;
+    }
+
+    .yandex-map {
+      width: 100%;
+      margin-top: -30px !important;
+      height: 160px;
     }
   }
 `;
