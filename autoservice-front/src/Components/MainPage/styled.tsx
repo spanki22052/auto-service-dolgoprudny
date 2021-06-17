@@ -146,3 +146,88 @@ export const AppointmentInput = styled.input`
     outline: none;
   }
 `;
+
+export const OurServicesImg = styled.img`
+  width: 100%;
+  object-fit: cover;
+  margin-top: 30px;
+`;
+
+export const ServicesBlock = styled.div`
+  width: 100%;
+
+  padding: 50px 10% 50px 10%;
+
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .icons-block,
+  .gallery-block {
+    width: 50%;
+    height: auto;
+  }
+
+  .gallery-block {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .icons-block,
+    .gallery-block {
+      width: 100%;
+    }
+  }
+
+  .icons-block {
+    .icon-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+      h1 {
+        font-family: Scada;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 20px;
+
+        color: #ffffff;
+      }
+
+      p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 10px;
+        line-height: 12px;
+        letter-spacing: 0.06em;
+        max-width: 250px;
+        text-align: center;
+
+        color: #858585;
+      }
+    }
+  }
+  .top-block {
+    width: 100%;
+    padding-bottom: 20px;
+
+    h1 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      text-transform: uppercase;
+
+      color: #ffffff;
+      text-align: center;
+    }
+  }
+`;
