@@ -1,4 +1,5 @@
 import blockimg from '../img/main-photo.png';
+import mapBackground from '../img/map-background.png';
 import styled from 'styled-components';
 
 export const MainBlock = styled.div`
@@ -228,6 +229,30 @@ export const ServicesBlock = styled.div`
 
       color: #ffffff;
       text-align: center;
+    }
+  }
+`;
+
+export const MapBlock = styled.div`
+  width: 100%;
+  height: 600px;
+  background-image: url(${mapBackground});
+
+  display: flex;
+  padding: 50px;
+
+  img {
+    max-width: 500px;
+    height: 300px;
+    object-fit: cover;
+
+    border: 1px solid white;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 20px;
+    img {
+      height: 200px;
     }
   }
 `;

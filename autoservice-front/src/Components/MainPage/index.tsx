@@ -5,6 +5,7 @@ import CarouselElement from '../Carousel';
 import ourServices from '../img/our-services.png';
 import smallOurServices from '../img/small-our-services.png';
 import galleryImg from '../img/gallery.png';
+import yandexMapImage from '../img/yandex-map-place.png';
 
 import { Car, Money, StopWatch } from '../Icons';
 
@@ -17,6 +18,7 @@ import {
   AppointmentInput,
   OurServicesImg,
   ServicesBlock,
+  MapBlock,
 } from './styled';
 
 const ButtonStyle = {
@@ -181,6 +183,10 @@ const MainPage = () => {
           <img src={galleryImg} alt="gallery-img" />
         </div>
       </ServicesBlock>
+
+      <MapBlock>
+        <img src={yandexMapImage} alt="yandex-map-image" />
+      </MapBlock>
     </MainBlock>
   );
 };
