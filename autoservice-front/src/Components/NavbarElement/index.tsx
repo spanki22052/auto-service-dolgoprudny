@@ -1,4 +1,4 @@
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Wheel } from '../Icons';
 
