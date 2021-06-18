@@ -302,3 +302,81 @@ export const MapBlock = styled.div`
     }
   }
 `;
+
+export const FeedbackBlock = styled.div`
+  width: 100%;
+  height: 300px;
+
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .left-side,
+  .right-side {
+    width: 48%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 700px) {
+    .left-side,
+    .right-side {
+      width: 90%;
+    }
+  }
+
+  .left-side {
+    .feedback-block {
+      width: 90%;
+      padding: 20px;
+
+      background: rgba(66, 158, 201, 0.4);
+      border-radius: 5px;
+
+      h1 {
+        font-family: Scada;
+        font-style: normal;
+      }
+
+      .name,
+      .score,
+      .date {
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: bold;
+
+        color: #ffffff;
+      }
+
+      .feedback {
+        font-family: Roboto;
+        font-style: italic;
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #ffffff;
+      }
+    }
+  }
+
+  .top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 50px 0 50px 10vw;
+
+    h1 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      text-transform: uppercase;
+
+      color: #ffffff;
+    }
+  }
+`;

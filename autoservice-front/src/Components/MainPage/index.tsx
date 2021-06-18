@@ -18,6 +18,7 @@ import {
   MakeAppointmentBlock,
   AppointmentInput,
   OurServicesImg,
+  FeedbackBlock,
   ServicesBlock,
   MapBlock,
 } from './styled';
@@ -193,6 +194,25 @@ const MainPage = () => {
         </div>
         <img className="yandex-map" src={yandexMapImage} alt="yandex-map" />
       </MapBlock>
+
+      <FeedbackBlock>
+        <div className="top">
+          <h1>Отзывы клиентов автосервиса</h1>
+        </div>
+        <div className="left-side">
+          <div className="feedback-block">
+            <h1 className="name">Вика</h1>
+            <h1 className="score">Оценка: ⭐⭐⭐</h1>
+            <h1 className="feedback">
+              Мне сделали машину, была замена турбины. Все заняло три дня. Была
+              небольшая очередь. Я осталась довольна Центром. Все работают
+              слажено, единым механизмом. Мои комплименты.
+            </h1>
+            <h1 className="date">Дата визита в сервис: 28.05.2021</h1>
+          </div>
+        </div>
+        <div className="right-side"></div>
+      </FeedbackBlock>
     </MainBlock>
   );
 };

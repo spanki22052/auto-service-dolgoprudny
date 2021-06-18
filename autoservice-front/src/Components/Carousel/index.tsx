@@ -150,7 +150,7 @@ const BlueLine = styled.div`
   border-bottom: 1px solid #429ec9;
 `;
 
-const CarouselElement: FC<PropsList> = ({ list }) => {
+const CarouselElement: FC<PropsList> = ({ list, children }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -197,6 +197,7 @@ const CarouselElement: FC<PropsList> = ({ list }) => {
           );
         })}
       </Carousel>
+      {children}
     </div>
   );
 };
