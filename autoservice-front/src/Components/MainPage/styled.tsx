@@ -287,9 +287,14 @@ export const MapBlock = styled.div`
 
   @media screen and (max-width: 700px) {
     padding: 20px;
-    width: 90%;
+    width: 100%;
+    * {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
 
-    justify-content: center;
     .left-block {
       width: 100%;
       margin: 0;
@@ -303,7 +308,12 @@ export const MapBlock = styled.div`
   }
 `;
 
-export const FeedbackBlock = styled.div`
+export const CenterBlueLine = styled.div`
+  height: 100%;
+  border-right: 1px solid #429ec9;
+`;
+
+export const FeedBack = styled.div`
   width: 100%;
   height: 300px;
 
@@ -321,41 +331,6 @@ export const FeedbackBlock = styled.div`
     .left-side,
     .right-side {
       width: 90%;
-    }
-  }
-
-  .left-side {
-    .feedback-block {
-      width: 90%;
-      padding: 20px;
-
-      background: rgba(66, 158, 201, 0.4);
-      border-radius: 5px;
-
-      h1 {
-        font-family: Scada;
-        font-style: normal;
-      }
-
-      .name,
-      .score,
-      .date {
-        font-size: 18px;
-        line-height: 22px;
-        font-weight: bold;
-
-        color: #ffffff;
-      }
-
-      .feedback {
-        font-family: Roboto;
-        font-style: italic;
-        font-weight: 200;
-        font-size: 16px;
-        line-height: 19px;
-
-        color: #ffffff;
-      }
     }
   }
 
@@ -378,5 +353,38 @@ export const FeedbackBlock = styled.div`
 
       color: #ffffff;
     }
+  }
+`;
+
+export const FeedBackBlock = styled.div`
+  width: 100%;
+  padding: 20px;
+
+  background: rgba(66, 158, 201, 0.4);
+  border-radius: 5px;
+
+  h1 {
+    font-family: Scada;
+    font-style: normal;
+  }
+
+  .name,
+  .score,
+  .date {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+
+    color: #ffffff;
+  }
+
+  .feedback {
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #ffffff;
   }
 `;

@@ -6,9 +6,12 @@ import ourServices from '../img/our-services.png';
 import smallOurServices from '../img/small-our-services.png';
 import galleryImg from '../img/gallery.png';
 import yandexMapImage from '../img/yandex-map-place.png';
+import DatePicker from 'react-datepicker';
 import mapBlockImage from '../img/image-map-block.png';
+import { useState } from 'react';
 
 import { Car, Money, StopWatch } from '../Icons';
+import FeedbackBlock from './FeedbackBlock';
 
 import {
   MainBlock,
@@ -18,9 +21,10 @@ import {
   MakeAppointmentBlock,
   AppointmentInput,
   OurServicesImg,
-  FeedbackBlock,
   ServicesBlock,
   MapBlock,
+  FeedBack,
+  CenterBlueLine,
 } from './styled';
 
 const ButtonStyle = {
@@ -31,7 +35,13 @@ const ButtonStyle = {
   padding: '8px 35px 8px 35px',
 };
 
+const ReturnStringDate = (PickDate: Date): string => {
+  return `0${PickDate.getDay()}.0${PickDate.getMonth()}.${PickDate.getFullYear()}`;
+};
+
 const MainPage = () => {
+  const [pickedDate, setDate] = useState(new Date());
+
   const { width } = useWindowDimensions();
   return (
     <MainBlock>
@@ -195,24 +205,28 @@ const MainPage = () => {
         <img className="yandex-map" src={yandexMapImage} alt="yandex-map" />
       </MapBlock>
 
-      <FeedbackBlock>
-        <div className="top">
-          <h1>Отзывы клиентов автосервиса</h1>
-        </div>
+      <FeedBack>
         <div className="left-side">
-          <div className="feedback-block">
-            <h1 className="name">Вика</h1>
-            <h1 className="score">Оценка: ⭐⭐⭐</h1>
-            <h1 className="feedback">
-              Мне сделали машину, была замена турбины. Все заняло три дня. Была
-              небольшая очередь. Я осталась довольна Центром. Все работают
-              слажено, единым механизмом. Мои комплименты.
-            </h1>
-            <h1 className="date">Дата визита в сервис: 28.05.2021</h1>
-          </div>
+          <FeedbackBlock />
         </div>
-        <div className="right-side"></div>
-      </FeedbackBlock>
+
+        <CenterBlueLine />
+
+        <div className="right-side">
+          <h1>Оставить отзыв</h1>
+          <input type="text" placeholder="Имя" />
+          <input type="text" placeholder="Услуга" />
+          <h1>Оценка: </h1>
+          <input type="text" placeholder="Комментарий" />
+          <DatePicker
+            value={ReturnStringDate(pickedDate)}
+            onChange={(e: Date): void => {
+              console.log(e);
+              setDate(e);
+            }}
+          />
+        </div>
+      </FeedBack>
     </MainBlock>
   );
 };
