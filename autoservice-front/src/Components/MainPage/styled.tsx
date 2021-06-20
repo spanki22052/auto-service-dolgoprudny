@@ -318,6 +318,7 @@ export const FeedBack = styled.div`
   height: 300px;
 
   display: flex;
+  margin-top: 20px;
   justify-content: space-around;
   flex-wrap: wrap;
 
@@ -331,6 +332,41 @@ export const FeedBack = styled.div`
     .left-side,
     .right-side {
       width: 90%;
+    }
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h1 {
+      font-family: Scada;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+
+      margin-bottom: 0;
+      margin-top: 10px;
+
+      color: #ffffff;
+    }
+
+    input {
+      background: rgba(196, 196, 196, 0.1);
+      font-family: Scada;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+      color: #ffffff;
+      opacity: 0.5;
+      border: 0;
+      width: 290px;
+      height: 30px;
+      padding-right: 10px;
+      padding-left: 10px;
+      margin-top: 10px;
     }
   }
 

@@ -36,7 +36,16 @@ const ButtonStyle = {
 };
 
 const ReturnStringDate = (PickDate: Date): string => {
-  return `0${PickDate.getDay()}.0${PickDate.getMonth()}.${PickDate.getFullYear()}`;
+  const day: string = PickDate.toString().split(' ')[2];
+  console.log(PickDate.getMonth().toString().length);
+  const month: string =
+    PickDate.getMonth().toString().length === 1
+      ? PickDate.getMonth() + 1 === 0
+        ? '0'
+        : `0${PickDate.getMonth() + 1}`
+      : `${PickDate.getMonth() + 1}`;
+
+  return `${day}.${month}.${PickDate.getFullYear()}`;
 };
 
 const MainPage = () => {
@@ -206,11 +215,11 @@ const MainPage = () => {
       </MapBlock>
 
       <FeedBack>
-        <div className="left-side">
-          <FeedbackBlock />
-        </div>
-
-        <CenterBlueLine />
+        {width > 700 && (
+          <div className="left-side">
+            <FeedbackBlock />
+          </div>
+        )}
 
         <div className="right-side">
           <h1>Оставить отзыв</h1>
@@ -221,11 +230,15 @@ const MainPage = () => {
           <DatePicker
             value={ReturnStringDate(pickedDate)}
             onChange={(e: Date): void => {
-              console.log(e);
               setDate(e);
             }}
           />
         </div>
+        {width < 700 && (
+          <div className="left-side">
+            <FeedbackBlock />
+          </div>
+        )}
       </FeedBack>
     </MainBlock>
   );
