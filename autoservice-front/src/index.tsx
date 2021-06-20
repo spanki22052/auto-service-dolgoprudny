@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage from './Components/MainPage';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-multi-carousel/lib/styles.css';
-
 document.body.style.background = '#0C1326';
 
 ReactDOM.render(

@@ -309,7 +309,6 @@ export const MapBlock = styled.div`
 `;
 
 export const CenterBlueLine = styled.div`
-  height: 100%;
   border-right: 1px solid #429ec9;
 `;
 
@@ -320,12 +319,11 @@ export const FeedBack = styled.div`
   display: flex;
   margin-top: 20px;
   justify-content: space-around;
+
   flex-wrap: wrap;
 
-  .left-side,
-  .right-side {
-    width: 48%;
-    height: 100%;
+  .left-side {
+    width: 65%;
   }
 
   @media screen and (max-width: 700px) {
@@ -333,9 +331,17 @@ export const FeedBack = styled.div`
     .right-side {
       width: 90%;
     }
+
+    .right-side {
+      justify-content: center;
+      width: 100% !important;
+      align-items: center;
+      display: flex;
+    }
   }
 
   .right-side {
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -395,6 +401,7 @@ export const FeedBack = styled.div`
 export const FeedBackBlock = styled.div`
   width: 100%;
   padding: 20px;
+  margin-top: 20px;
 
   background: rgba(66, 158, 201, 0.4);
   border-radius: 5px;

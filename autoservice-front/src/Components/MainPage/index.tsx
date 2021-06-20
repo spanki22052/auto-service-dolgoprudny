@@ -8,10 +8,11 @@ import galleryImg from '../img/gallery.png';
 import yandexMapImage from '../img/yandex-map-place.png';
 import DatePicker from 'react-datepicker';
 import mapBlockImage from '../img/image-map-block.png';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { Car, Money, StopWatch } from '../Icons';
 import FeedbackBlock from './FeedbackBlock';
+import { ServiceInterface } from '../Interfaces';
+import firebase from '../Firebase/';
 
 import {
   MainBlock,
@@ -37,7 +38,6 @@ const ButtonStyle = {
 
 const ReturnStringDate = (PickDate: Date): string => {
   const day: string = PickDate.toString().split(' ')[2];
-  console.log(PickDate.getMonth().toString().length);
   const month: string =
     PickDate.getMonth().toString().length === 1
       ? PickDate.getMonth() + 1 === 0
@@ -50,8 +50,27 @@ const ReturnStringDate = (PickDate: Date): string => {
 
 const MainPage = () => {
   const [pickedDate, setDate] = useState(new Date());
+  const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
 
   const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    firebase
+      .collection('services')
+      .doc('servicesList')
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const docData = doc.data();
+          docData !== undefined
+            ? DbDataSet(docData.service)
+            : console.log('is undefined');
+        } else {
+          console.log('No such document!');
+        }
+      });
+  }, []);
+
   return (
     <MainBlock>
       {width > 575 ? <PCNavbar /> : <GadgetNavbar />}
@@ -79,94 +98,7 @@ const MainPage = () => {
         </div>
       </InfoAppointmentBlock>
 
-      <CarouselElement
-        list={[
-          {
-            title: 'Замена колес',
-            price: 2200,
-            description: 'Сезонная замена колес',
-            image:
-              'https://opt-922625.ssl.1c-bitrix-cdn.ru/upload/iblock/b27/b27c2096709dc3221f4b1c497fa1db1c.jpg?1577432909565715',
-          },
-          {
-            title: 'Замена масла',
-            price: 1200,
-            description: 'Замена масла самого лучшего качества',
-            image:
-              'https://cdnimg.rg.ru/img/content/193/16/27/iStock-928323870_d_850.jpg',
-          },
-          {
-            title: 'Диагностика',
-            price: 3000,
-            description: 'Быстрая диагностика вашего авто',
-            image:
-              'http://reaktor154.ru/wp-content/uploads/2018/12/dscf8301-edit-1024x683.jpg',
-          },
-          {
-            title: 'Кузовой ремонт',
-            price: 4000,
-            description: 'Ремонт кузова высшего качества',
-            image:
-              'http://krasnodar-n1.ru/wp-content/uploads/2015/03/Kuzovn_rem_copy2.jpg',
-          },
-          {
-            title: 'Шиномонтаж',
-            price: 1300,
-            description: 'Быстрый демонтаж автомобиля',
-            image:
-              'https://krasnodar.virbacavto.ru/upload/iblock/1f1/%D0%A8%D0%B8%D0%BD%D0%BE%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%201%20621.png',
-          },
-          {
-            title: 'Заправка кондиционера',
-            price: 1550,
-            description: 'Заправка кондиционера лучшими средствами',
-            image:
-              'https://www.viktorymotor.com/wp-content/uploads/2019/06/kondic.jpg',
-          },
-          {
-            title: 'Замена колес',
-            price: 2200,
-            description: 'Сезонная замена колес',
-            image:
-              'https://opt-922625.ssl.1c-bitrix-cdn.ru/upload/iblock/b27/b27c2096709dc3221f4b1c497fa1db1c.jpg?1577432909565715',
-          },
-          {
-            title: 'Замена масла',
-            price: 1200,
-            description: 'Замена масла самого лучшего качества',
-            image:
-              'https://cdnimg.rg.ru/img/content/193/16/27/iStock-928323870_d_850.jpg',
-          },
-          {
-            title: 'Диагностика',
-            price: 3000,
-            description: 'Быстрая диагностика вашего авто',
-            image:
-              'http://reaktor154.ru/wp-content/uploads/2018/12/dscf8301-edit-1024x683.jpg',
-          },
-          {
-            title: 'Кузовой ремонт',
-            price: 4000,
-            description: 'Ремонт кузова высшего качества',
-            image:
-              'http://krasnodar-n1.ru/wp-content/uploads/2015/03/Kuzovn_rem_copy2.jpg',
-          },
-          {
-            title: 'Шиномонтаж',
-            price: 1300,
-            description: 'Быстрый демонтаж автомобиля',
-            image:
-              'https://krasnodar.virbacavto.ru/upload/iblock/1f1/%D0%A8%D0%B8%D0%BD%D0%BE%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%201%20621.png',
-          },
-          {
-            title: 'Заправка кондиционера',
-            price: 1550,
-            description: 'Заправка кондиционера лучшими средствами',
-            image:
-              'https://www.viktorymotor.com/wp-content/uploads/2019/06/kondic.jpg',
-          },
-        ]}
-      />
+      <CarouselElement list={DbData} />
 
       {width > 500 ? (
         <OurServicesImg src={ourServices} alt="ds" />
@@ -218,8 +150,12 @@ const MainPage = () => {
         {width > 700 && (
           <div className="left-side">
             <FeedbackBlock />
+            <FeedbackBlock />
+            <FeedbackBlock />
           </div>
         )}
+
+        {width > 700 && <CenterBlueLine />}
 
         <div className="right-side">
           <h1>Оставить отзыв</h1>
@@ -236,6 +172,8 @@ const MainPage = () => {
         </div>
         {width < 700 && (
           <div className="left-side">
+            <FeedbackBlock />
+            <FeedbackBlock />
             <FeedbackBlock />
           </div>
         )}
