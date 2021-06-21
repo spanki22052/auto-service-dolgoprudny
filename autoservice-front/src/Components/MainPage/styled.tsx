@@ -431,3 +431,83 @@ export const FeedBackBlock = styled.div`
     color: #ffffff;
   }
 `;
+
+export const AdminBlock = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 700px) {
+    form {
+      width: 90% !important;
+    }
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    padding: 30px 20px 30px 20px !important;
+  }
+`;
+
+export const BlueButton = styled.button`
+  width: 157px;
+  height: 40px;
+
+  background: #429ec9;
+  border-radius: 5px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+
+  border: 0;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #ffffff;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #176c94;
+  }
+`;
+
+export const InputElement = styled.input`
+  background: rgba(196, 196, 196, 0.4);
+  border: 1px solid rgba(196, 196, 196, 0.7);
+
+  font-family: Scada;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #ffffff;
+  opacity: 0.6;
+
+  border: 0;
+  max-width: 500px;
+  height: 30px;
+
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+
+  ::placeholder {
+    color: white;
+  }
+`;
