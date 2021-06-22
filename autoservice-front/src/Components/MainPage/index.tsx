@@ -13,7 +13,6 @@ import { Car, Money, StopWatch } from '../Icons';
 import FeedbackBlock from './FeedbackBlock';
 import { ServiceInterface } from '../Interfaces';
 import firebase from '../Firebase/';
-
 import {
   MainBlock,
   InfoAppointmentBlock,
