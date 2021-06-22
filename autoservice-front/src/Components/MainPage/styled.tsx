@@ -511,3 +511,33 @@ export const InputElement = styled.input`
     color: white;
   }
 `;
+
+export const AdminPageBlock = styled.div`
+  width: 90%;
+  margin: auto;
+
+  .choose-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+`;
+
+type PropsType = {
+  choosed?: boolean;
+};
+
+export const ChooseElement = styled.h1<PropsType>`
+  font-family: Scada;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  line-height: 25px;
+
+  background: ${(props: PropsType) => (props.choosed ? '#073F68' : null)};
+
+  color: #95b8d1;
+`;

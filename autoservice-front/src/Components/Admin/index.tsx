@@ -4,8 +4,6 @@ import AdminPanel from './AdminPanel';
 import { firebaseAuth } from '../Firebase';
 
 const Admin = () => {
-  const [isLogged, setLog] = useState(false);
-
   const [user, setUser] = useState(false);
 
   useEffect(() => {
