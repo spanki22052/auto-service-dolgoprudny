@@ -492,7 +492,6 @@ export const InputElement = styled.input`
   border: 1px solid rgba(196, 196, 196, 0.7);
 
   font-family: Scada;
-  font-weight: normal;
   font-size: 18px;
   line-height: 22px;
 
@@ -545,7 +544,7 @@ export const ChooseElement = styled.h1<PropsType>`
 export const RequestsBlocks = styled.div`
   width: 100%;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 750px) {
     .request-block {
       width: 100% !important;
     }
@@ -566,6 +565,7 @@ export const RequestsBlocks = styled.div`
       font-weight: 400;
       font-size: 14px;
       color: white;
+      font-size: 1.4em;
     }
 
     button {
@@ -573,31 +573,47 @@ export const RequestsBlocks = styled.div`
       bottom: 10px;
       right: 10px;
       width: 50px;
-      background-color: red;
+      background: none;
+      border: 1px solid red;
+
+      svg {
+        fill: red;
+      }
 
       &:hover {
-        background: rgba(66, 158, 201, 0.4);
+        background-color: red;
 
         svg {
-          fill: red;
+          fill: white;
         }
       }
     }
+  }
+`;
 
-    .name {
-      font-size: 1.7em;
+export const AdminServicesBlock = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+
+  @media screen and (max-width: 700px) {
+    .service-block {
+      width: 90% !important;
     }
+  }
 
-    .phone-number {
-      font-size: 1.5em;
-    }
+  .service-block {
+    width: 50%;
+    background: #073f68;
+    padding: 20px;
 
-    .auto-model {
-      font-size: 1.4em;
-    }
-
-    .service {
-      font-size: 1.4em;
+    .nun {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
   }
 `;
