@@ -541,3 +541,63 @@ export const ChooseElement = styled.h1<PropsType>`
 
   color: #95b8d1;
 `;
+
+export const RequestsBlocks = styled.div`
+  width: 100%;
+
+  @media screen and (max-width: 700px) {
+    .request-block {
+      width: 100% !important;
+    }
+  }
+
+  .request-block {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 60px 30px;
+    border-radius: 3px;
+    background: #073f68;
+    position: relative;
+
+    h1 {
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      color: white;
+    }
+
+    button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 50px;
+      background-color: red;
+
+      &:hover {
+        background: rgba(66, 158, 201, 0.4);
+
+        svg {
+          fill: red;
+        }
+      }
+    }
+
+    .name {
+      font-size: 1.7em;
+    }
+
+    .phone-number {
+      font-size: 1.5em;
+    }
+
+    .auto-model {
+      font-size: 1.4em;
+    }
+
+    .service {
+      font-size: 1.4em;
+    }
+  }
+`;

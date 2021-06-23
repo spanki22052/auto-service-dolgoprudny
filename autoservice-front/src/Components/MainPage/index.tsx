@@ -92,6 +92,7 @@ const MainPage = () => {
             <AppointmentInput placeholder="Имя" />
             <AppointmentInput placeholder="Номер телефона" />
             <AppointmentInput placeholder="Услуга" />
+            <AppointmentInput placeholder="Модель автомобиля" />
             <Button style={ButtonStyle}>Записаться</Button>
           </MakeAppointmentBlock>
         </div>
