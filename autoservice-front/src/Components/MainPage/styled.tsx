@@ -600,6 +600,10 @@ export const AdminServicesBlock = styled.div`
   @media screen and (max-width: 700px) {
     .service-block {
       width: 90% !important;
+
+      input {
+        width: 85% !important;
+      }
     }
   }
 
@@ -607,6 +611,12 @@ export const AdminServicesBlock = styled.div`
     width: 50%;
     background: #073f68;
     padding: 20px;
+
+    input {
+      width: 70%;
+      height: 30px;
+      font-size: 1em;
+    }
 
     .nun {
       display: flex;
