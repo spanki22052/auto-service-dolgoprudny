@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Firebase from '../../Firebase';
 import { BlueButton, RequestsBlocks } from '../../MainPage/styled';
 
-interface RequestsInterface {
+export interface RequestsInterface {
   service: string;
   phoneNumber: string;
   autoModel: string;
@@ -27,6 +27,13 @@ const RequestsElement = () => {
       });
   }, []);
 
+  const removeRequestElement = (index: number) => {
+    console.log(requestsList[index]);
+    Firebase.collection('services')
+      .doc('requestsList')
+      .set({ requests: requestsList.splice(index, 1) });
+  };
+
   return (
     <RequestsBlocks>
       {requestsList.map((el, index) => {
@@ -45,7 +52,7 @@ const RequestsElement = () => {
             </h1>
             <h1 className="auto-model">Модель авто: {el.autoModel}</h1>
             <h1 className="service">Услуга: {el.service}</h1>
-            <BlueButton>
+            <BlueButton onClick={() => removeRequestElement(index)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

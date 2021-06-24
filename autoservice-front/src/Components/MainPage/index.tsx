@@ -26,6 +26,7 @@ import {
   FeedBack,
   CenterBlueLine,
 } from './styled';
+import { RequestsInterface } from '../Admin/services/requests';
 
 const ButtonStyle = {
   backgroundColor: '#429EC9',
@@ -50,6 +51,12 @@ const ReturnStringDate = (PickDate: Date): string => {
 const MainPage = () => {
   const [pickedDate, setDate] = useState(new Date());
   const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
+  const [InputsState, setInputsState] = useState<RequestsInterface>({
+    service: '',
+    phoneNumber: '',
+    autoModel: '',
+    name: '',
+  });
 
   const { width } = useWindowDimensions();
 
@@ -89,10 +96,34 @@ const MainPage = () => {
         <div className="right-side">
           <MakeAppointmentBlock>
             <h1>Запись онлайн</h1>
-            <AppointmentInput placeholder="Имя" />
-            <AppointmentInput placeholder="Номер телефона" />
-            <AppointmentInput placeholder="Услуга" />
-            <AppointmentInput placeholder="Модель автомобиля" />
+            <AppointmentInput
+              value={InputsState.name}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputsState({ ...InputsState, name: e.target.value });
+              }}
+              placeholder="Имя"
+            />
+            <AppointmentInput
+              value={InputsState.phoneNumber}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputsState({ ...InputsState, phoneNumber: e.target.value });
+              }}
+              placeholder="Номер телефона"
+            />
+            <AppointmentInput
+              value={InputsState.service}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputsState({ ...InputsState, service: e.target.value });
+              }}
+              placeholder="Услуга"
+            />
+            <AppointmentInput
+              value={InputsState.autoModel}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputsState({ ...InputsState, autoModel: e.target.value });
+              }}
+              placeholder="Модель автомобиля"
+            />
             <Button style={ButtonStyle}>Записаться</Button>
           </MakeAppointmentBlock>
         </div>
