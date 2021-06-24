@@ -107,7 +107,7 @@ export const MakeAppointmentBlock = styled.div`
   width: 300px;
   height: auto;
 
-  form {
+  .nun {
     background-color: white;
     border-radius: 10px;
     display: flex;

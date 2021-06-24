@@ -129,19 +129,21 @@ const MainPage = () => {
         <div className="right-side">
           <MakeAppointmentBlock>
             <form
+              className="nun"
               onSubmit={(e: React.SyntheticEvent) => {
                 InputsState.service.length > 3 &&
-                  InputsState.phoneNumber.length > 11 &&
+                  InputsState.phoneNumber.length === 11 &&
                   InputsState.autoModel.length > 4 &&
                   InputsState.name.length > 4 &&
                   updateRequestsList();
-                console.log('asdasd');
+
                 e.preventDefault();
               }}
             >
               <h1>Запись онлайн</h1>
               <AppointmentInput
                 value={InputsState.name}
+                type="text"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setInputsState({ ...InputsState, name: e.target.value });
                 }}
@@ -149,6 +151,7 @@ const MainPage = () => {
               />
               <AppointmentInput
                 value={InputsState.phoneNumber}
+                type="text"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setInputsState({
                     ...InputsState,
@@ -159,19 +162,23 @@ const MainPage = () => {
               />
               <AppointmentInput
                 value={InputsState.service}
+                type="text"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setInputsState({ ...InputsState, service: e.target.value });
                 }}
                 placeholder="Услуга"
               />
               <AppointmentInput
+                type="text"
                 value={InputsState.autoModel}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setInputsState({ ...InputsState, autoModel: e.target.value });
                 }}
                 placeholder="Модель автомобиля"
               />
-              <Button style={ButtonStyle}>Записаться</Button>
+              <Button type="submit" style={ButtonStyle}>
+                Записаться
+              </Button>
             </form>
           </MakeAppointmentBlock>
         </div>
