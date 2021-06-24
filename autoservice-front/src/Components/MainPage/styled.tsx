@@ -106,12 +106,15 @@ export const SmallInfoText = styled.h2`
 export const MakeAppointmentBlock = styled.div`
   width: 300px;
   height: auto;
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 50px 5px 50px 5px;
+
+  form {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px 5px 50px 5px;
+  }
 
   h1 {
     font-family: Roboto;

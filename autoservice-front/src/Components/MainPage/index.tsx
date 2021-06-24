@@ -13,6 +13,7 @@ import { Car, Money, StopWatch } from '../Icons';
 import FeedbackBlock from './FeedbackBlock';
 import { ServiceInterface } from '../Interfaces';
 import firebase from '../Firebase/';
+
 import {
   MainBlock,
   InfoAppointmentBlock,
@@ -59,6 +60,38 @@ const MainPage = () => {
   });
 
   const { width } = useWindowDimensions();
+  const [requestsList, setRequestsList] = useState<RequestsInterface[]>([]);
+
+  useEffect(() => {
+    firebase
+      .collection('services')
+      .doc('requestsList')
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const docData = doc.data();
+          docData !== undefined
+            ? setRequestsList(docData.requests)
+            : console.log('is undefined');
+        } else {
+          console.log('No such document!');
+        }
+      });
+  }, []);
+
+  const updateRequestsList = () => {
+    console.log([...requestsList, InputsState]);
+    firebase
+      .collection('services')
+      .doc('requestsList')
+      .set({ requests: [...requestsList, InputsState] });
+    setInputsState({
+      service: '',
+      phoneNumber: '',
+      autoModel: '',
+      name: '',
+    });
+  };
 
   useEffect(() => {
     firebase
@@ -95,36 +128,51 @@ const MainPage = () => {
 
         <div className="right-side">
           <MakeAppointmentBlock>
-            <h1>Запись онлайн</h1>
-            <AppointmentInput
-              value={InputsState.name}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setInputsState({ ...InputsState, name: e.target.value });
+            <form
+              onSubmit={(e: React.SyntheticEvent) => {
+                InputsState.service.length > 3 &&
+                  InputsState.phoneNumber.length > 11 &&
+                  InputsState.autoModel.length > 4 &&
+                  InputsState.name.length > 4 &&
+                  updateRequestsList();
+                console.log('asdasd');
+                e.preventDefault();
               }}
-              placeholder="Имя"
-            />
-            <AppointmentInput
-              value={InputsState.phoneNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setInputsState({ ...InputsState, phoneNumber: e.target.value });
-              }}
-              placeholder="Номер телефона"
-            />
-            <AppointmentInput
-              value={InputsState.service}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setInputsState({ ...InputsState, service: e.target.value });
-              }}
-              placeholder="Услуга"
-            />
-            <AppointmentInput
-              value={InputsState.autoModel}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setInputsState({ ...InputsState, autoModel: e.target.value });
-              }}
-              placeholder="Модель автомобиля"
-            />
-            <Button style={ButtonStyle}>Записаться</Button>
+            >
+              <h1>Запись онлайн</h1>
+              <AppointmentInput
+                value={InputsState.name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setInputsState({ ...InputsState, name: e.target.value });
+                }}
+                placeholder="Имя"
+              />
+              <AppointmentInput
+                value={InputsState.phoneNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setInputsState({
+                    ...InputsState,
+                    phoneNumber: e.target.value,
+                  });
+                }}
+                placeholder="Номер телефона"
+              />
+              <AppointmentInput
+                value={InputsState.service}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setInputsState({ ...InputsState, service: e.target.value });
+                }}
+                placeholder="Услуга"
+              />
+              <AppointmentInput
+                value={InputsState.autoModel}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setInputsState({ ...InputsState, autoModel: e.target.value });
+                }}
+                placeholder="Модель автомобиля"
+              />
+              <Button style={ButtonStyle}>Записаться</Button>
+            </form>
           </MakeAppointmentBlock>
         </div>
       </InfoAppointmentBlock>
