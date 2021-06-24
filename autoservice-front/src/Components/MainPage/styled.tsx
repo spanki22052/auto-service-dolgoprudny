@@ -546,6 +546,9 @@ export const ChooseElement = styled.h1<PropsType>`
 
 export const RequestsBlocks = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 750px) {
     .request-block {
@@ -561,6 +564,7 @@ export const RequestsBlocks = styled.div`
     border-radius: 3px;
     background: #073f68;
     position: relative;
+    margin-top: 20px;
 
     h1 {
       font-family: Montserrat;

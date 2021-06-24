@@ -85,6 +85,7 @@ const MainPage = () => {
       .collection('services')
       .doc('requestsList')
       .set({ requests: [...requestsList, InputsState] });
+    setRequestsList([...requestsList, InputsState]);
     setInputsState({
       service: '',
       phoneNumber: '',

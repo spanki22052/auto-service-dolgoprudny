@@ -27,11 +27,18 @@ const RequestsElement = () => {
       });
   }, []);
 
-  const removeRequestElement = (index: number) => {
-    console.log(requestsList[index]);
+  const removeRequestElement = (indx: number) => {
+    const splicedList = requestsList;
+    splicedList.splice(indx, 1);
+    console.log(splicedList);
+    setRequestsList(
+      requestsList.filter((el, index) => {
+        return index !== indx;
+      })
+    );
     Firebase.collection('services')
       .doc('requestsList')
-      .set({ requests: requestsList.splice(index, 1) });
+      .set({ requests: splicedList });
   };
 
   return (
