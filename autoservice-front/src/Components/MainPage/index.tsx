@@ -9,7 +9,7 @@ import yandexMapImage from '../img/yandex-map-place.png';
 import DatePicker from 'react-datepicker';
 import mapBlockImage from '../img/image-map-block.png';
 import { useState, useEffect } from 'react';
-import { Car, Money, StopWatch } from '../Icons';
+import { Car, Money, StarEmpty, StarFilled, StopWatch } from '../Icons';
 import FeedbackBlock from './FeedbackBlock';
 import { ServiceInterface } from '../Interfaces';
 import firebase from '../Firebase/';
@@ -65,7 +65,7 @@ const MainPage = () => {
     autoModel: '',
     name: '',
   });
-
+  const [starsState, setStarsState] = useState(1);
   const { width } = useWindowDimensions();
   const [requestsList, setRequestsList] = useState<RequestsInterface[]>([]);
   const [feedbacksList, setFeedbacksList] = useState<FeedbacksInterface[]>([]);
@@ -280,6 +280,26 @@ const MainPage = () => {
           <input type="text" placeholder="Имя" />
           <input type="text" placeholder="Услуга" />
           <h1>Оценка: </h1>
+          <div
+            className="stars-block"
+            style={{ display: 'flex', justifyContent: 'flex-start' }}
+          >
+            <div className="star" onClick={() => setStarsState(1)}>
+              {starsState > 0 ? <StarFilled /> : <StarEmpty />}
+            </div>
+            <div className="star" onClick={() => setStarsState(2)}>
+              {starsState > 1 ? <StarFilled /> : <StarEmpty />}
+            </div>
+            <div className="star" onClick={() => setStarsState(3)}>
+              {starsState > 2 ? <StarFilled /> : <StarEmpty />}
+            </div>
+            <div className="star" onClick={() => setStarsState(4)}>
+              {starsState > 3 ? <StarFilled /> : <StarEmpty />}
+            </div>
+            <div className="star" onClick={() => setStarsState(5)}>
+              {starsState > 4 ? <StarFilled /> : <StarEmpty />}
+            </div>
+          </div>
           <input type="text" placeholder="Комментарий" />
           <DatePicker
             value={ReturnStringDate(pickedDate)}

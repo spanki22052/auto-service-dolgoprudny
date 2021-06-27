@@ -8,13 +8,13 @@ interface PropsObj {
   name: string;
 }
 
-const FeedbackBlock = (feedback: PropsObj) => {
+const FeedbackBlock: FC<PropsObj> = ({ feedback, stars, date, name }) => {
   return (
     <FeedBackBlock className="feedback-block">
-      <h1 className="name">{feedback.name}</h1>
-      <h1 className="score">Оценка: {'⭐'.repeat(feedback.stars)}</h1>
-      <h1 className="feedback">{feedback.feedback}</h1>
-      <h1 className="date">Дата визита в сервис: {feedback.date}</h1>
+      <h1 className="name">{name}</h1>
+      <h1 className="score">Оценка: {'⭐'.repeat(stars)}</h1>
+      <h1 className="feedback">{feedback}</h1>
+      <h1 className="date">Дата визита в сервис: {date}</h1>
     </FeedBackBlock>
   );
 };
