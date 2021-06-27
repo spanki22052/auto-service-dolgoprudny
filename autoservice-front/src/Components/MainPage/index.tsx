@@ -37,6 +37,13 @@ const ButtonStyle = {
   padding: '8px 35px 8px 35px',
 };
 
+export interface FeedbacksInterface {
+  feedback: string;
+  stars: string;
+  date: string;
+  name: string;
+}
+
 const ReturnStringDate = (PickDate: Date): string => {
   const day: string = PickDate.toString().split(' ')[2];
   const month: string =
@@ -61,6 +68,7 @@ const MainPage = () => {
 
   const { width } = useWindowDimensions();
   const [requestsList, setRequestsList] = useState<RequestsInterface[]>([]);
+  const [feedbacksList, setFeedbacksList] = useState<FeedbacksInterface[]>([]);
 
   useEffect(() => {
     firebase
@@ -72,6 +80,20 @@ const MainPage = () => {
           const docData = doc.data();
           docData !== undefined
             ? setRequestsList(docData.requests)
+            : console.log('is undefined');
+        } else {
+          console.log('No such document!');
+        }
+      });
+    firebase
+      .collection('services')
+      .doc('feedbacksList')
+      .get()
+      .then((el) => {
+        if (el.exists) {
+          const docData = el.data();
+          docData !== undefined
+            ? setFeedbacksList(docData.feedbacks)
             : console.log('is undefined');
         } else {
           console.log('No such document!');
