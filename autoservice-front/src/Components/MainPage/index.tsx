@@ -39,7 +39,7 @@ const ButtonStyle = {
 
 export interface FeedbacksInterface {
   feedback: string;
-  stars: string;
+  stars: number;
   date: string;
   name: string;
 }
@@ -258,9 +258,18 @@ const MainPage = () => {
       <FeedBack>
         {width > 700 && (
           <div className="left-side">
-            <FeedbackBlock />
-            <FeedbackBlock />
-            <FeedbackBlock />
+            {feedbacksList.map((el, index) => {
+              console.log(el);
+              return (
+                <FeedbackBlock
+                  feedback={el.feedback}
+                  stars={el.stars}
+                  date={el.date}
+                  name={el.name}
+                  key={index}
+                />
+              );
+            })}
           </div>
         )}
 
@@ -281,9 +290,20 @@ const MainPage = () => {
         </div>
         {width < 700 && (
           <div className="left-side">
-            <FeedbackBlock />
-            <FeedbackBlock />
-            <FeedbackBlock />
+            {feedbacksList.map((el, index) => {
+              console.log(el);
+              return (
+                index < 3 && (
+                  <FeedbackBlock
+                    feedback={el.feedback}
+                    stars={el.stars}
+                    date={el.date}
+                    name={el.name}
+                    key={index}
+                  />
+                )
+              );
+            })}
           </div>
         )}
       </FeedBack>
