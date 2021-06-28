@@ -317,8 +317,7 @@ export const CenterBlueLine = styled.div`
 
 export const FeedBack = styled.div`
   width: 100%;
-  height: 300px;
-
+  padding-bottom: 20px;
   display: flex;
   margin-top: 20px;
   justify-content: space-around;

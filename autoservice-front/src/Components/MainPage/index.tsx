@@ -26,6 +26,7 @@ import {
   MapBlock,
   FeedBack,
   CenterBlueLine,
+  BlueButton,
 } from './styled';
 import { RequestsInterface } from '../Admin/services/requests';
 
@@ -57,7 +58,7 @@ const ReturnStringDate = (PickDate: Date): string => {
 };
 
 const MainPage = () => {
-  const [pickedDate, setDate] = useState(new Date());
+  const [pickedDate, setDate] = useState(ReturnStringDate(new Date()));
   const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
   const [InputsState, setInputsState] = useState<RequestsInterface>({
     service: '',
@@ -65,10 +66,15 @@ const MainPage = () => {
     autoModel: '',
     name: '',
   });
-  const [starsState, setStarsState] = useState(1);
   const { width } = useWindowDimensions();
   const [requestsList, setRequestsList] = useState<RequestsInterface[]>([]);
   const [feedbacksList, setFeedbacksList] = useState<FeedbacksInterface[]>([]);
+  const [feedbacksInput, setFeedbacksInput] = useState<FeedbacksInterface>({
+    feedback: '',
+    stars: 1,
+    date: pickedDate,
+    name: '',
+  });
 
   useEffect(() => {
     firebase
@@ -112,6 +118,21 @@ const MainPage = () => {
       service: '',
       phoneNumber: '',
       autoModel: '',
+      name: '',
+    });
+  };
+
+  const updateFeedbacksList = () => {
+    console.log([...feedbacksList, feedbacksInput]);
+    firebase
+      .collection('services')
+      .doc('requestsList')
+      .set({ feedbacks: [...feedbacksList, feedbacksInput] });
+    setFeedbacksList([...feedbacksList, feedbacksInput]);
+    setFeedbacksInput({
+      date: pickedDate,
+      feedback: '',
+      stars: 1,
       name: '',
     });
   };
@@ -277,36 +298,77 @@ const MainPage = () => {
 
         <div className="right-side">
           <h1>Оставить отзыв</h1>
-          <input type="text" placeholder="Имя" />
-          <input type="text" placeholder="Услуга" />
+          <input
+            value={feedbacksInput.name}
+            type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setFeedbacksInput({ ...feedbacksInput, name: e.target.value });
+            }}
+            placeholder="Имя"
+          />
           <h1>Оценка: </h1>
           <div
             className="stars-block"
             style={{ display: 'flex', justifyContent: 'flex-start' }}
           >
-            <div className="star" onClick={() => setStarsState(1)}>
-              {starsState > 0 ? <StarFilled /> : <StarEmpty />}
+            <div
+              className="star"
+              onClick={() => setFeedbacksInput({ ...feedbacksInput, stars: 1 })}
+            >
+              {feedbacksInput.stars > 0 ? <StarFilled /> : <StarEmpty />}
             </div>
-            <div className="star" onClick={() => setStarsState(2)}>
-              {starsState > 1 ? <StarFilled /> : <StarEmpty />}
+            <div
+              className="star"
+              onClick={() => setFeedbacksInput({ ...feedbacksInput, stars: 2 })}
+            >
+              {feedbacksInput.stars > 1 ? <StarFilled /> : <StarEmpty />}
             </div>
-            <div className="star" onClick={() => setStarsState(3)}>
-              {starsState > 2 ? <StarFilled /> : <StarEmpty />}
+            <div
+              className="star"
+              onClick={() => setFeedbacksInput({ ...feedbacksInput, stars: 3 })}
+            >
+              {feedbacksInput.stars > 2 ? <StarFilled /> : <StarEmpty />}
             </div>
-            <div className="star" onClick={() => setStarsState(4)}>
-              {starsState > 3 ? <StarFilled /> : <StarEmpty />}
+            <div
+              className="star"
+              onClick={() => setFeedbacksInput({ ...feedbacksInput, stars: 4 })}
+            >
+              {feedbacksInput.stars > 3 ? <StarFilled /> : <StarEmpty />}
             </div>
-            <div className="star" onClick={() => setStarsState(5)}>
-              {starsState > 4 ? <StarFilled /> : <StarEmpty />}
+            <div
+              className="star"
+              onClick={() => setFeedbacksInput({ ...feedbacksInput, stars: 5 })}
+            >
+              {feedbacksInput.stars > 4 ? <StarFilled /> : <StarEmpty />}
             </div>
           </div>
-          <input type="text" placeholder="Комментарий" />
+          <input
+            type="text"
+            value={feedbacksInput.feedback}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setFeedbacksInput({
+                ...feedbacksInput,
+                feedback: e.target.value,
+              });
+            }}
+            placeholder="Комментарий"
+          />
           <DatePicker
-            value={ReturnStringDate(pickedDate)}
+            value={pickedDate}
             onChange={(e: Date): void => {
-              setDate(e);
+              setDate(ReturnStringDate(e));
             }}
           />
+          <BlueButton
+            onClick={() => {
+              feedbacksInput.name.length > 3 &&
+                feedbacksInput.feedback.length > 10 &&
+                updateFeedbacksList();
+              setFeedbacksInput({ ...feedbacksInput, date: pickedDate });
+            }}
+          >
+            Отправить
+          </BlueButton>
         </div>
         {width < 700 && (
           <div className="left-side">
