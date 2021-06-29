@@ -58,7 +58,6 @@ const ReturnStringDate = (PickDate: Date): string => {
 };
 
 const MainPage = () => {
-  const [pickedDate, setDate] = useState(ReturnStringDate(new Date()));
   const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
   const [InputsState, setInputsState] = useState<RequestsInterface>({
     service: '',
@@ -72,7 +71,7 @@ const MainPage = () => {
   const [feedbacksInput, setFeedbacksInput] = useState<FeedbacksInterface>({
     feedback: '',
     stars: 1,
-    date: pickedDate,
+    date: ReturnStringDate(new Date()),
     name: '',
   });
 
@@ -126,11 +125,11 @@ const MainPage = () => {
     console.log([...feedbacksList, feedbacksInput]);
     firebase
       .collection('services')
-      .doc('requestsList')
+      .doc('feedbacksList')
       .set({ feedbacks: [...feedbacksList, feedbacksInput] });
     setFeedbacksList([...feedbacksList, feedbacksInput]);
     setFeedbacksInput({
-      date: pickedDate,
+      date: ReturnStringDate(new Date()),
       feedback: '',
       stars: 1,
       name: '',
@@ -282,13 +281,15 @@ const MainPage = () => {
             {feedbacksList.map((el, index) => {
               console.log(el);
               return (
-                <FeedbackBlock
-                  feedback={el.feedback}
-                  stars={el.stars}
-                  date={el.date}
-                  name={el.name}
-                  key={index}
-                />
+                index < 3 && (
+                  <FeedbackBlock
+                    feedback={el.feedback}
+                    stars={el.stars}
+                    date={el.date}
+                    name={el.name}
+                    key={index}
+                  />
+                )
               );
             })}
           </div>
@@ -354,9 +355,12 @@ const MainPage = () => {
             placeholder="Комментарий"
           />
           <DatePicker
-            value={pickedDate}
+            value={feedbacksInput.date}
             onChange={(e: Date): void => {
-              setDate(ReturnStringDate(e));
+              setFeedbacksInput({
+                ...feedbacksInput,
+                date: ReturnStringDate(e),
+              });
             }}
           />
           <BlueButton
@@ -364,7 +368,6 @@ const MainPage = () => {
               feedbacksInput.name.length > 3 &&
                 feedbacksInput.feedback.length > 10 &&
                 updateFeedbacksList();
-              setFeedbacksInput({ ...feedbacksInput, date: pickedDate });
             }}
           >
             Отправить
