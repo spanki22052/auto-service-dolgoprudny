@@ -148,7 +148,6 @@ const MainPage = () => {
             Мы сосредоточены на предоставлении нашим клиентам самого высокого
             уровня качества и отличной поддержки клиентов.
           </SmallInfoText>
-          <Button style={ButtonStyle}>Подробнее</Button>
         </div>
 
         <div className="right-side">

@@ -26,7 +26,7 @@ const CarouselBlock = styled.div`
 
   background-color: white;
   display: flex;
-  margin-left: 30px;
+  margin-left: 5%;
   justify-content: space-between;
   position: relative;
   align-items: center;
@@ -255,8 +255,8 @@ const CarouselElement = () => {
                     <RedRemoveButton
                       style={{
                         position: 'absolute',
-                        bottom: '10px',
-                        right: '10px',
+                        bottom: '2px',
+                        right: '2px',
                       }}
                       onClick={() => removeServiceElement(index)}
                     >

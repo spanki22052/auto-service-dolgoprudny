@@ -22,8 +22,6 @@ const ServiceElement = () => {
   });
   const [servicesState, setServicesState] = useState<ServicesInterface[]>([]);
 
-  console.log(InputState);
-
   useEffect(() => {
     Firebase.collection('services')
       .doc('servicesList')
@@ -44,6 +42,7 @@ const ServiceElement = () => {
     Firebase.collection('services')
       .doc('servicesList')
       .set({ service: [...servicesState, updateElement] });
+    setServicesState([...servicesState, updateElement]);
   };
 
   return (

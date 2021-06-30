@@ -490,7 +490,9 @@ export const BlueButton = styled.button`
 `;
 
 export const RedRemoveButton = styled.button`
-  padding: 10px;
+  padding: 5px;
+  height: auto !important;
+  width: auto !important;
 
   background: #dc3545;
   border-radius: 5px;
