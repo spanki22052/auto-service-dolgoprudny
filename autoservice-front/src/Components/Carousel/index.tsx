@@ -1,7 +1,12 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
+import { firebaseAuth } from '../Firebase';
+import { TrashIcon } from '../Icons';
+import { ServiceInterface } from '../Interfaces';
+import { RedRemoveButton } from '../MainPage/styled';
 import './carousel-change.css';
+import firebase from '../Firebase';
 
 interface Props {
   title: string;
@@ -23,6 +28,7 @@ const CarouselBlock = styled.div`
   display: flex;
   margin-left: 30px;
   justify-content: space-between;
+  position: relative;
   align-items: center;
 
   .right-side {
@@ -151,7 +157,54 @@ const BlueLine = styled.div`
   border-bottom: 1px solid #429ec9;
 `;
 
-const CarouselElement: FC<PropsList> = ({ list, children }) => {
+const CarouselElement = () => {
+  const [user, setUser] = useState(false);
+  const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
+
+  console.log(DbData);
+
+  useEffect(() => {
+    firebase
+      .collection('services')
+      .doc('servicesList')
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const docData = doc.data();
+          docData !== undefined
+            ? DbDataSet(docData.service)
+            : console.log('is undefined');
+        } else {
+          console.log('No such document!');
+        }
+      });
+  }, []);
+
+  const removeServiceElement = (indx: number) => {
+    const newList = [...DbData];
+    newList.splice(indx, 1);
+
+    firebase
+      .collection('services')
+      .doc('servicesList')
+      .set({ service: newList });
+
+    DbDataSet(newList);
+  };
+
+  useEffect(() => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        setUser(true);
+      } else {
+        setUser(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -175,33 +228,46 @@ const CarouselElement: FC<PropsList> = ({ list, children }) => {
   return (
     <div className="holder" style={{ marginTop: '40px', height: '320px' }}>
       <Carousel autoPlaySpeed={2500} autoPlay={true} responsive={responsive}>
-        {list.map((el, index) => {
-          return (
-            <CarouselBlock key={index}>
-              <ImageBlock
-                src={el.image}
-                style={{ width: '100px', height: '100px' }}
-                alt="dsa"
-              />
-              <div className="right-side">
-                <TitleText>{el.title}</TitleText>
-                <BlueLine />
-                <DescriptionText>{el.description}</DescriptionText>
-                <BlueButton
-                  onClick={(e: any) => {
-                    e.preventDefault();
+        {DbData !== undefined &&
+          DbData.map((el, index) => {
+            return (
+              <CarouselBlock key={index}>
+                <ImageBlock
+                  src={el.image}
+                  style={{ width: '100px', height: '100px' }}
+                  alt="dsa"
+                />
+                <div className="right-side">
+                  <TitleText>{el.title}</TitleText>
+                  <BlueLine />
+                  <DescriptionText>{el.description}</DescriptionText>
+                  <BlueButton
+                    onClick={(e: any) => {
+                      e.preventDefault();
 
-                    window.location.href = '#service';
-                  }}
-                >
-                  Записаться
-                </BlueButton>
-              </div>
-            </CarouselBlock>
-          );
-        })}
+                      window.location.href = '#service';
+                    }}
+                  >
+                    Записаться
+                  </BlueButton>
+
+                  {user && (
+                    <RedRemoveButton
+                      style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        right: '10px',
+                      }}
+                      onClick={() => removeServiceElement(index)}
+                    >
+                      <TrashIcon />
+                    </RedRemoveButton>
+                  )}
+                </div>
+              </CarouselBlock>
+            );
+          })}
       </Carousel>
-      {children}
     </div>
   );
 };

@@ -29,7 +29,7 @@ const RequestsElement = () => {
   }, []);
 
   const removeRequestElement = (indx: number) => {
-    const splicedList = requestsList;
+    const splicedList = [...requestsList];
     splicedList.splice(indx, 1);
     console.log(splicedList);
     setRequestsList(

@@ -58,7 +58,6 @@ const ReturnStringDate = (PickDate: Date): string => {
 };
 
 const MainPage = () => {
-  const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
   const [InputsState, setInputsState] = useState<RequestsInterface>({
     service: '',
     phoneNumber: '',
@@ -136,23 +135,6 @@ const MainPage = () => {
     });
   };
 
-  useEffect(() => {
-    firebase
-      .collection('services')
-      .doc('servicesList')
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const docData = doc.data();
-          docData !== undefined
-            ? DbDataSet(docData.service)
-            : console.log('is undefined');
-        } else {
-          console.log('No such document!');
-        }
-      });
-  }, []);
-
   return (
     <MainBlock>
       {width > 575 ? <PCNavbar /> : <GadgetNavbar />}
@@ -227,7 +209,7 @@ const MainPage = () => {
         </div>
       </InfoAppointmentBlock>
 
-      <CarouselElement list={DbData} />
+      <CarouselElement />
 
       {width > 500 ? (
         <OurServicesImg src={ourServices} alt="ds" />

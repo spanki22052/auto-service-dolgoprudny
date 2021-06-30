@@ -489,6 +489,31 @@ export const BlueButton = styled.button`
   }
 `;
 
+export const RedRemoveButton = styled.button`
+  padding: 10px;
+
+  background: #dc3545;
+  border-radius: 5px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+
+  border: 0;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #ffffff;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #ec3158;
+  }
+`;
+
 export const InputElement = styled.input`
   background: rgba(196, 196, 196, 0.4);
   border: 1px solid rgba(196, 196, 196, 0.7);
