@@ -3,6 +3,7 @@ import { firebaseAuth } from '../Firebase';
 import { AdminPageBlock, BlueButton, ChooseElement } from '../MainPage/styled';
 import RequestsElement from './services/requests';
 import ServiceElement from './services/service';
+import { useHistory } from 'react-router-dom';
 
 interface servicesStyle {
   services: boolean;
@@ -15,11 +16,13 @@ const AdminPage = () => {
     requests: false,
   });
 
+  const history = useHistory();
+
   return (
     <AdminPageBlock>
       <BlueButton
         style={{ marginLeft: '20px', width: '50px' }}
-        onClick={() => firebaseAuth.signOut()}
+        onClick={() => history.push('/')}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

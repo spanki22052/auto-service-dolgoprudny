@@ -170,7 +170,7 @@ const MainPage = () => {
         </div>
 
         <div className="right-side">
-          <MakeAppointmentBlock>
+          <MakeAppointmentBlock id="service">
             <form
               className="nun"
               onSubmit={(e: React.SyntheticEvent) => {

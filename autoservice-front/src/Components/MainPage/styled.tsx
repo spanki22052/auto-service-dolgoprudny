@@ -552,6 +552,10 @@ export const RequestsBlocks = styled.div`
   @media screen and (max-width: 750px) {
     .request-block {
       width: 100% !important;
+
+      h1 {
+        font-size: 1.1em !important;
+      }
     }
   }
 

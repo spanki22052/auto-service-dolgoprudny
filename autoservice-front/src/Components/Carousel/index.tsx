@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
+import './carousel-change.css';
 
 interface Props {
   title: string;
@@ -135,7 +136,7 @@ const DescriptionText = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  font-size: 10px;
+  font-size: 11.5px;
   line-height: 12px;
   /* identical to box height */
   letter-spacing: 0.06em;
@@ -172,13 +173,8 @@ const CarouselElement: FC<PropsList> = ({ list, children }) => {
   };
 
   return (
-    <div className="holder" style={{ marginTop: '20px' }}>
-      <Carousel
-        showDots={true}
-        autoPlaySpeed={2500}
-        autoPlay={true}
-        responsive={responsive}
-      >
+    <div className="holder" style={{ marginTop: '40px', height: '320px' }}>
+      <Carousel autoPlaySpeed={2500} autoPlay={true} responsive={responsive}>
         {list.map((el, index) => {
           return (
             <CarouselBlock key={index}>
@@ -191,7 +187,15 @@ const CarouselElement: FC<PropsList> = ({ list, children }) => {
                 <TitleText>{el.title}</TitleText>
                 <BlueLine />
                 <DescriptionText>{el.description}</DescriptionText>
-                <BlueButton>Записаться</BlueButton>
+                <BlueButton
+                  onClick={(e: any) => {
+                    e.preventDefault();
+
+                    window.location.href = '#service';
+                  }}
+                >
+                  Записаться
+                </BlueButton>
               </div>
             </CarouselBlock>
           );
