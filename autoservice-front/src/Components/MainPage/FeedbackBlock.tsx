@@ -10,7 +10,7 @@ interface PropsObj {
 
 const FeedbackBlock: FC<PropsObj> = ({ feedback, stars, date, name }) => {
   return (
-    <FeedBackBlock className="feedback-block">
+    <FeedBackBlock style={{ paddingBottom: '20px' }} className="feedback-block">
       <h1 className="name">{name}</h1>
       <h1 className="score">Оценка: {'⭐'.repeat(stars)}</h1>
       <h1 className="feedback">{feedback}</h1>

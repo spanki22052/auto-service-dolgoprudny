@@ -1,6 +1,8 @@
 import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { Wheel } from '../Icons';
+import './navbar.css';
 
 const MainBlockNavbar = styled.div`
   display: flex;
@@ -66,6 +68,7 @@ const NavElement = styled.h1`
 `;
 
 export const PCNavbar = () => {
+  const history = useHistory();
   return (
     <MainBlockNavbar>
       <div className="left-side">
@@ -75,9 +78,10 @@ export const PCNavbar = () => {
         </Logo>
       </div>
       <div className="right-side">
-        <NavElement>Главная</NavElement>
-        <NavElement>Услуги</NavElement>
-        <NavElement>Галерея</NavElement>
+        <NavElement onClick={() => history.push('/')}>Главная</NavElement>
+        <NavElement onClick={() => history.push('/feedbacks')}>
+          Отзывы
+        </NavElement>
         <NavElement>Контакты</NavElement>
       </div>
     </MainBlockNavbar>
@@ -85,8 +89,9 @@ export const PCNavbar = () => {
 };
 
 export const GadgetNavbar = () => {
+  const history = useHistory();
   return (
-    <Navbar style={{ background: 'red !important' }} expand="sm">
+    <Navbar expand="sm">
       <Navbar.Brand
         style={{
           display: 'flex',
@@ -103,8 +108,10 @@ export const GadgetNavbar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <NavElement>Главная</NavElement>
-          <NavElement>Услуги</NavElement>
+          <NavElement onClick={() => history.push('/')}>Главная</NavElement>
+          <NavElement onClick={() => history.push('/feedbacks')}>
+            Отзывы
+          </NavElement>
           <NavElement>Галерея</NavElement>
           <NavElement>Контакты</NavElement>
         </Nav>
