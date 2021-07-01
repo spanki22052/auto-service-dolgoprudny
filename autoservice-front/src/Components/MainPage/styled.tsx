@@ -664,3 +664,10 @@ export const AdminServicesBlock = styled.div`
     }
   }
 `;
+
+export const FeedbacksBlock = styled.div`
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  margin: auto;
+`;

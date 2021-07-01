@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
 import { firebaseAuth } from '../Firebase';
@@ -13,10 +13,6 @@ interface Props {
   price: number;
   image: string;
   description: string;
-}
-
-interface PropsList {
-  list: Props[];
 }
 
 const CarouselBlock = styled.div`
