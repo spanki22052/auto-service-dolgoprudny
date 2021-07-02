@@ -11,7 +11,6 @@ import mapBlockImage from '../img/image-map-block.png';
 import { useState, useEffect } from 'react';
 import { Car, Money, StarEmpty, StarFilled, StopWatch } from '../Icons';
 import FeedbackBlock from './FeedbackBlock';
-import { ServiceInterface } from '../Interfaces';
 import firebase from '../Firebase/';
 
 import {

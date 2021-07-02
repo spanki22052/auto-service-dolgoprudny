@@ -5,15 +5,7 @@ import { firebaseAuth } from '../Firebase';
 import { TrashIcon } from '../Icons';
 import { ServiceInterface } from '../Interfaces';
 import { RedRemoveButton } from '../MainPage/styled';
-import './carousel-change.css';
 import firebase from '../Firebase';
-
-interface Props {
-  title: string;
-  price: number;
-  image: string;
-  description: string;
-}
 
 const CarouselBlock = styled.div`
   height: auto;
