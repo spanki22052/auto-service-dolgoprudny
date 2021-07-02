@@ -71,7 +71,11 @@ export const PCNavbar = () => {
   const history = useHistory();
   return (
     <MainBlockNavbar>
-      <div className="left-side">
+      <div
+        className="left-side"
+        style={{ cursor: 'pointer' }}
+        onClick={() => history.push('/')}
+      >
         <Wheel />
         <Logo>
           Авто<span style={{ color: '#429EC9' }}>Сервис</span>
@@ -98,6 +102,7 @@ export const GadgetNavbar = () => {
           justifyContent: 'center',
           alignItems: 'flex-end',
         }}
+        onClick={() => history.push('/')}
         href="#home"
       >
         <Wheel />
