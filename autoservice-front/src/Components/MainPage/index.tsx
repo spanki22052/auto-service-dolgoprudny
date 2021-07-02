@@ -106,7 +106,6 @@ const MainPage = () => {
   }, []);
 
   const updateRequestsList = () => {
-    console.log([...requestsList, InputsState]);
     firebase
       .collection('services')
       .doc('requestsList')
@@ -121,7 +120,6 @@ const MainPage = () => {
   };
 
   const updateFeedbacksList = () => {
-    console.log([...feedbacksList, feedbacksInput]);
     firebase
       .collection('services')
       .doc('feedbacksList')
@@ -260,7 +258,6 @@ const MainPage = () => {
         {width > 700 && (
           <div className="left-side">
             {feedbacksList.map((el, index) => {
-              console.log(el);
               return (
                 index < 3 && (
                   <FeedbackBlock
@@ -357,7 +354,6 @@ const MainPage = () => {
         {width < 700 && (
           <div className="left-side">
             {feedbacksList.map((el, index) => {
-              console.log(el);
               return (
                 index < 3 && (
                   <FeedbackBlock

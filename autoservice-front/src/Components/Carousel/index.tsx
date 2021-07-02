@@ -157,8 +157,6 @@ const CarouselElement = () => {
   const [user, setUser] = useState(false);
   const [DbData, DbDataSet] = useState<ServiceInterface[]>([]);
 
-  console.log(DbData);
-
   useEffect(() => {
     firebase
       .collection('services')
